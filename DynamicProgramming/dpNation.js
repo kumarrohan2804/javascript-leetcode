@@ -1,12 +1,17 @@
 function maxSum(arr, k) {
   // taking value at 0 will be the maximum
-  let curr = arr[0];
+  let curr = 0;
   let mSum = arr[0];
   // looping through the rest of the indexes to find the maximum
-  for (let i = 1; i < k; i++) {
+  for (let i = 0; i < k; i++) {
     // at each iteration checking the maximum
-    curr = Math.max(arr[i], curr + arr[i]);
-    mSum = Math.max(mSum, curr);
+    curr += arr[i];
+    if (curr > mSum) {
+      mSum = curr;
+    }
+    if (curr < 0) {
+      curr = 0;
+    }
   }
   console.log(mSum);
 }
