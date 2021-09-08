@@ -1,18 +1,24 @@
+let dp = Array(2000 + 1).fill(-1);
 function cutRod(arr, n) {
-  if (n <= 0) {
+  if (n == 0) {
     return 0;
   }
-  let max = -Infinity;
-  for (let i = 0; i < n; i++) {
-    max = Math.max(max, arr[i] + cutRod(arr, n - (i + 1)));
+  if (dp[n] !== -1) {
+    return dp[n];
   }
-  return max;
+  let curr = 0;
+  for (let i = 1; i <= n; i++) {
+    curr = Math.max(curr, arr[i] + cutRod(arr, n - i));
+  }
+  dp[n] = curr;
+  return curr;
 }
 
 function runProgram(input) {
   var a = input.split("\n");
   var size = Number(a[0]);
   var arr = a[1].split(" ").map(Number);
+  arr.unshift(0);
   let result = cutRod(arr, size);
   console.log(result);
 }
