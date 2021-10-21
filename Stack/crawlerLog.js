@@ -8,7 +8,6 @@ var minOperations = function (logs) {
     }
   }
   let count = 0;
-  console.log(stack);
   while (stack.length > 1) {
     stack.pop();
     count++;
